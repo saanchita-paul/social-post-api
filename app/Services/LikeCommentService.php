@@ -33,6 +33,7 @@ class LikeCommentService
                 'like' => $like,
             ]);
         } catch (\Throwable $th) {
+            Log::error('ErrorFrom::LikeCommentService::likeComment()', [$th->getMessage(), $th->getTraceAsString()]);
             return $th;
         }
     }

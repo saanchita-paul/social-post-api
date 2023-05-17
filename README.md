@@ -1,64 +1,298 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Social Post API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository contains the source code for Social Post API. The API allows users to post different blog-like posts with or without media in this system. User will be able to create the post and get requests to get those posts paginated. Every post have a like feature. There is track who and how many likes have been posted for a post with like count. Every Post have multiple comments from the user.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The Social Post API offers the following features:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Create Post:** Users can add new post with or without media by providing the necessary details, including the post title, content.
+- **Retrieve Item:** Users can retrieve the details of all post with pagination as well as a specific post by providing its ID. Also users can retrieve commnet list with pagination and other details.
+- **Search post:** posts can be searched by specifying post name.
+- **Add like & comment:** user can add like or comment to a post. Also user can like a comment.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+To set up the Social Post API on your local machine, follow these steps:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Clone the repository using the following command:
 
-### Premium Partners
+```
+git clone https://github.com/saanchita-paul/social-post-api.git
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- Navigate to the cloned directory:
 
-## Contributing
+```
+cd social-post-api
+```
+- Install dependencies:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+composer install
+```
 
-## Code of Conduct
+- Copy the .env.example file to .env:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+cp .env.example .env
+```
+- Generate an application key:
 
-## Security Vulnerabilities
+```
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Configure the database in the .env file:
 
-## License
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
+- Migrate the database:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```markdown
+php artisan migrate
+```
+
+- Run the following command to seed the database:
+
+```
+php artisan db:seed
+```
+
+- Start the development server:
+
+```
+php artisan serve
+```
+
+- Visit [localhost](http://localhost:8000) in your web browser to use the application.
+
+
+## API Documentation
+
+**Authorization**
+
+The system incorporates authorization support for future utilization, employing a login registration system that incorporates a bearer token mechanism.
+
+Upon successful login, the Bearer token can be obtained from the login response. This token should be included in the Authorization header of subsequent API requests.
+
+Alternatively, you have the option to include the Bearer token directly in the SocialPostAPI collection. By doing so, there is no need to add the Authorization header for each API request.
+
+
+**Currently, the API endpoints do not possess authorization requirements, allowing access without the presence of an authentication system.**
+
+
+The API endpoints and their usage are documented below:
+
+<details>
+  <summary>Registration</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/auth/register
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint allows users to register and create an account.
+    ```
+
+ </details>
+
+ <details>
+  <summary>Login</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/auth/login
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint enables users to log in and obtain a Bearer token for authentication.
+    ```
+
+ </details>
+
+
+ <details>
+  <summary>Get User</summary>
+
+- Endpoint:
+
+  ```http
+  GET /api/auth/user
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint retrieves information about all authenticated users.
+    ```
+
+ </details>
+
+
+ <details>
+  <summary>Create Post</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/posts
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint allows user to create post with or without media
+    ```
+
+ </details>
+
+
+ <details>
+  <summary>Post List</summary>
+
+- Endpoint:
+
+  ```http
+  GET /api/posts?per_page={per_page}&search={search}
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint allows the user to retrieve a list of all posts with image from the database. The user can apply filters to the results by adding query parameters to the endpoint. The per_page parameter specifies the number of posts to be returned per page, and the search parameter allows the user to search for posts by their title.
+    ```
+
+ </details>
+
+
+  <details>
+  <summary>Post Details</summary>
+
+- Endpoint:
+
+  ```http
+  GET /api/posts/{postid}
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint allows the user to retrieve the details of a specific post based on its ID with image, comments, like count of each post and liked by.
+    ```
+
+ </details>
+
+
+  <details>
+  <summary>Add Like To A Post</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/posts/{postid}/like
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint allows the user to add like to a post
+    ```
+
+ </details>
+
+
+
+ <details>
+  <summary>Add Comment On A Post</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/posts/{postid}/comment
+  
+  ```
+
+- Description:
+    ```
+    This API endpoint allows the user to add a comment on a post
+    ```
+
+ </details>
+
+
+
+<details>
+  <summary>Get Comments</summary>
+
+- Endpoint:
+
+  ```http
+  GET /api/posts/{postid}/comments
+  
+  ```
+
+- Description:
+    ```
+   This API endpoint allows the user to retrieve comments list with pagination of the post
+    ```
+
+ </details>
+
+ <details>
+  <summary>Like A Comment</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/comments/{commentid}/like 
+  
+  ```
+
+- Description:
+    ```
+   This API endpoint allows the user to like a comment
+    ```
+
+ </details>
+
+
+ <details>
+  <summary>Logout</summary>
+
+- Endpoint:
+
+  ```http
+  POST /api/auth/logout
+  
+  ```
+
+- Description:
+    ```
+      This API endpoint allows the user to log out from the application. When invoked, the access token associated with the user will be invalidated and removed.
+    ```
+
+ </details>
+
+
+
+
+
+[Check Postman API Documentation](https://documenter.getpostman.com/view/15919922/2s93kxcRoV)
+  

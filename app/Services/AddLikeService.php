@@ -33,6 +33,7 @@ class AddLikeService
                 'like' => $like,
             ]);
         } catch (\Throwable $th) {
+            Log::error('ErrorFrom::AddLikeService::addLike()', [$th->getMessage(), $th->getTraceAsString()]);
             return $th;
         }
     }

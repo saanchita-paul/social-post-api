@@ -26,6 +26,7 @@ class PostListService
                 ->paginate($data->get('per_page'));
 
         } catch (\Throwable $th) {
+            Log::error('ErrorFrom::PostListService::list()', [$th->getMessage(), $th->getTraceAsString()]);
             return $th;
         }
     }

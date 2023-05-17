@@ -34,6 +34,7 @@ class AddCommentService
                 'comment' => $comment,
             ]);
         } catch (\Throwable $th) {
+            Log::error('ErrorFrom::AddCommentService::addComment()', [$th->getMessage(), $th->getTraceAsString()]);
             return $th;
         }
     }

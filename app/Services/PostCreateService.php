@@ -47,6 +47,7 @@ class PostCreateService
             ]);
 
         } catch (\Throwable $th) {
+            Log::error('ErrorFrom::PostCreateService::addPost()', [$th->getMessage(), $th->getTraceAsString()]);
             return $th;
         }
     }

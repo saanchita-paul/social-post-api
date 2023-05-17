@@ -33,6 +33,7 @@ class PostDetailService
                 'liked_by' => $likedBy,
             ]);
         } catch (\Throwable $th) {
+            Log::error('ErrorFrom::PostDetailService::singlePost()', [$th->getMessage(), $th->getTraceAsString()]);
             return $th;
         }
     }
