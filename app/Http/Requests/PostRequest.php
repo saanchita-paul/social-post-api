@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             'user_id' => 'required',
             'title' => 'required',
             'content' => 'nullable',
-            'image_name' => 'required|mimes:jpg,jpeg,png,webp',
+            'image_name' => 'nullable|mimes:jpg,jpeg,png,webp',
         ];
     }
 }
