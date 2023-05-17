@@ -26,12 +26,7 @@ class PostListService
                 ->paginate($data->get('per_page'));
 
         } catch (\Throwable $th) {
-            Log::error('An error occurred: ',[$th->getMessage()]);
-            return response()->json([
-                'message' => 'Post List Retrieved',
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return $th;
         }
     }
 }

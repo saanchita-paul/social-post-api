@@ -36,11 +36,7 @@ class UserRegisterService
             ], 200);
 
         } catch (\Throwable $th) {
-            Log::error('An error occurred: ',[$th->getMessage()]);
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return $th;
         }
     }
 
