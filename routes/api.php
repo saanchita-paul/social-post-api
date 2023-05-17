@@ -43,11 +43,31 @@ Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
 
 
-
+/**
+ * post create api with single image support
+ */
 Route::post('/create-post', [PostController::class, 'createPost']);
+/**
+ * post list with image, pagination, search and count
+ */
 Route::get('/post-list', [PostController::class, 'postList']);
+/**
+ * post details with image, comments, like count of each post and liked by
+ */
 Route::get('/posts/{postID}', [PostController::class, 'postDetails']);
+/**
+ * comments list with pagination of the post
+ */
 Route::get('/posts/{postID}/comments', [PostController::class, 'getComments']);
+/**
+ * add like to a post
+ */
 Route::post('/posts/{postID}/like', [PostController::class, 'addLike']);
+/**
+ * comment on a post
+ */
 Route::post('/posts/{postID}/comment', [PostController::class, 'addComment']);
+/**
+ * like a comment
+ */
 Route::post('/comments/{commentID}/like', [PostController::class, 'likeComment']);
