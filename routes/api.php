@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     /**
      * get user
      */
-    Route::get('/user', [AuthController::class,'getUser']);
+    Route::get('/auth/user', [AuthController::class,'getUser']);
     /**
      * user logout
      */
@@ -46,11 +46,11 @@ Route::post('/auth/login', [AuthController::class, 'loginUser']);
 /**
  * post create api with single image support
  */
-Route::post('/create-post', [PostController::class, 'createPost']);
+Route::post('/posts', [PostController::class, 'createPost']);
 /**
  * post list with image, pagination, search and count
  */
-Route::get('/post-list', [PostController::class, 'postList']);
+Route::get('/posts', [PostController::class, 'postList']);
 /**
  * post details with image, comments, like count of each post and liked by
  */
